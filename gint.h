@@ -119,7 +119,8 @@ public:
   void  operator delete[](void* p)       { D("%p GInt::delete[]\n",            p);                  free(p);                                 } // delete[] a              : Deallocate storage (array)
 
 public:
-#ifdef _DEBUG
+#define _GINT_DEBUG
+#ifdef _GINT_DEBUG
   static void D(const char* fmt, ...)
   {
     static const int BUF_SIZE = 4096;
@@ -134,10 +135,10 @@ public:
     if (len != -1) printf("%s", buf);
     va_end(args);
   }
-  #else // _DEBUG
+  #else // _GINT_DEBUG
   static void D(const char* fmt, ...)
   {
     (void)fmt;
   }
-  #endif // _DEBUG
+  #endif // _GINT_DEBUG
 };
